@@ -1,8 +1,11 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import React, {Component} from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.css';
 import { Radio } from 'antd';
 import 'antd/dist/antd.css';
+import Admin from './pages/admin/admin'
+import Login from './pages/login/login'
 
 class App extends Component {
   state = {
@@ -20,20 +23,13 @@ class App extends Component {
           <Radio.Button value="default">Default</Radio.Button>
           <Radio.Button value="small">Small</Radio.Button>
         </Radio.Group>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/" component={Admin}></Route>
+          </Switch>
+        </BrowserRouter>
+
       </div>
     );
   }
