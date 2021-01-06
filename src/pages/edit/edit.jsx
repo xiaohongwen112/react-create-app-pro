@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './login.less'
+import './edit.less'
 export default class Admin extends Component{
   render() {
     return (
