@@ -8,6 +8,7 @@ import {
 } from '@ant-design/icons';
 import './admin.less'
 import MainShow from '../../component/MainShow'
+import ModelCommon from '../../component/ModelCommon/ModelCommon'
 const { Search } = Input;
 const { Sider, Content } = Layout;
 const suffix = (
@@ -63,7 +64,7 @@ export default class Admin extends Component{
                   enterButton
                   className="search-input"
                 />
-                <Button type="primary" style={{float: 'left', marginLeft:"10px"}} onClick={() => this.createRoom() }>创建机房</Button>
+                <Button type="primary" style={{float: 'left', marginLeft:"10px"}} onClick={() => this.createRoom(true) }>创建机房</Button>
                 <div style={{margin: '54px 0px 0 30px'}}>
                   {
                     this.state.list.map((element, index) => {
@@ -77,26 +78,14 @@ export default class Admin extends Component{
             </Content>
           </Layout>
         </Layout>
-        <Modal
-          title="Modal 1000px width"
-          centered
-          visible={this.state.visible}
-          // onOk={() => setVisible(false)}
-          // onCancel={() => setVisible(false)}
-          width={1000}
-        >
-          <p>some contents...</p>
-          <p>some contents...</p>
-          <p>some contents...</p>
-        </Modal>
+        <ModelCommon visible={this.state.visible} onClicked={this.createRoom.bind(this)}/>     
       </div>
     )
   }
-  createRoom() {
-    debugger;
-    this.setState = {
-      visible: true
-    }
+  createRoom(data) {
+    this.setState({
+      visible: data
+    })
   }
   onSearch() {
     debugger;
