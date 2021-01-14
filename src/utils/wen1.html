@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+            overflow: hidden;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        
+        .box1 {
+            height: 20px;
+            margin: 10px 0;
+            background-color: green;
+        }
+        
+        .box2 {
+            height: 20px;
+            margin: 20px 0;
+            background-color: green;
+        }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box1"></div>
+    <div class="box2"></div>
+</div>
+  <script>
+ function getUrlParam(sUrl, sKey) {
+      const arr = sUrl.split("?")[1];
+      const keyArr = arr.split('&');
+      const newArr = []
+      keyArr.forEach(e => {
+          const predata = e.split('=')
+          if(predata[0] === sKey ) {
+              newArr.push(Number(predata[1]))
+          }
+      })
+      return newArr
+    }
+    console.log(getUrlParam('：http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe','key'))
+  </script>
+</body>
+</html>

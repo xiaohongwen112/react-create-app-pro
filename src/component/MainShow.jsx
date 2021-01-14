@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import imgURL from '../../public/img/jifang.png';
 import { Radio, Button, Menu, Dropdown} from 'antd';
 import history from '../utils/history';
+import { Link } from 'react-router-dom'
 class MainShow extends Component {
   deleteFn() {
 
@@ -61,7 +62,9 @@ class MainShow extends Component {
           <span style={{float:"right", marginRight: '10px'}}>{area}</span>
         </div>
         <div style={{width:"100%"}}>
-          <Button value="large"  style={{float:"left", width: '105px', height: '28px'}} onClick={ ()=> this.editRoom()}>编辑机房</Button>
+          <Button value="large"  style={{float:"left", width: '105px', height: '28px'}} onClick={ ()=> this.editRoom()}>
+            <Link to={{pathname: 'edit'}}> 编辑机房</Link>
+          </Button>
           <Button  style={{float:"left", marginLeft: '10px',width: '85px', textAlign:'center', height: '28px'}}>查看监控</Button>
           {/* <Button  style={{float:"left", marginLeft: '10px',width: '55px', height: '28px'}}>···</Button> */}
           <Dropdown trigger={['click']}  style={{float:"left", marginLeft: '10px',width: '55px', height: '28px', 'left': 'left: 450px;'}} overlay={menu}>

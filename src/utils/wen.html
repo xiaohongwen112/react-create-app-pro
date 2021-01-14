@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+            overflow: hidden;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        
+        .box1 {
+            height: 20px;
+            margin: 10px 0;
+            background-color: green;
+        }
+        
+        .box2 {
+            height: 20px;
+            margin: 20px 0;
+            background-color: green;
+        }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box1"></div>
+    <div class="box2"></div>
+</div>
+  <script>
+    // BFC block formatting context 块级格式化上下文
+    // jsonp 跨越问题
+      // jsonp 跨域引发的问题： CSRF(Cross-site request forgery) 跨站请求伪造
+    // CSRF 也被称为 one click attack/setion riding 缩写CSRF/XSRF
+    // CSRF 的攻击原理
+      // 1.登录受信任网站A，并在本地生成Cookie。
+      // 2.在不登出A的情况下，访问危险网站B。
+    // CSRF 防御
+    // jsonp的防御：验证jsonP调用的来源Referer,服务端判断Referer是否是白名单，或者部署随机token来防御
+    // 在服务器端
+    // xss 攻击 （Cross site script） 跨站脚本攻击 本为 css 为了区分 改为xss
+    // CORS （Cross-Origin Resource Sharing）跨源资源共享 端口不一致也会报跨域问题
+      // 使用请求头header 的 Access-Control-Allow-Origin : '*'
+      // 使用jsonp 
+      // nginx 
+    // 有效括號（） 为 true （{） 为false
+    // ('2345') {a: '1'} true    ('12345'} false 栈思想
+
+
+    /**
+     * @param {string} str 传入的字符串
+     * @return {boolean}
+    */
+    const isValid = (str) => {
+      let num = 0;
+      if (str?.length > 1 ) {
+        const n = str.length;
+        // const stack = []; // 利用栈原来实现 FILO first In Last Out
+        // 在数组的开始位置移出 shift()  在尾部 push()
+        for (let i =0; i<n;i++){ // 时间复杂度O(n) 循环一次n加一
+          const c  = str[i];
+          if ( c === "(") {
+            num++
+            // stack.push(c) // 入栈，数组最后一个元素，栈顶元素
+          } else if (c === ")"){
+            // if(stack.length < 1) {
+      
+            // stack.pop();
+            num++
+          }
+        }
+        // return stack.length > 0 ? false : true;
+        return num == 0 ? false : true;
+      }
+      else return true
+    }
+    console.log(isValid('()(11234))'))
+
+    const checkValid = (str) => {
+
+    }
+
+    // 优化 将时间复杂度降为 O(1)
+  </script>
+</body>
+</html>

@@ -26,15 +26,15 @@ class App extends Component {
           <Radio.Button value="default">Default</Radio.Button>
           <Radio.Button value="small">Small</Radio.Button>
         </Radio.Group> */}
-        {/* <BrowserRouter> */}
-        <Router history={this.state.history}>
+        <BrowserRouter>
           <Switch>
-            <Route path="/login" component={Login}></Route>
-            <Route path="/edit" component={Edit}></Route>
-            <Route path="/" component={Admin}></Route>
+            {/* <Router history={this.state.history}> */}
+              <Route path="/login" component={Login}></Route>
+              <Route path="/edit" component={Edit}></Route>
+              <Route path="/" component={Admin}></Route>
+            {/* </Router> */}
           </Switch>
-          </Router>
-        {/* </BrowserRouter> */}
+        </BrowserRouter>
 
       </div>
     );
