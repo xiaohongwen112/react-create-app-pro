@@ -30,20 +30,114 @@
     <div class="box1"></div>
     <div class="box2"></div>
 </div>
-  <script>
- function getUrlParam(sUrl, sKey) {
-      const arr = sUrl.split("?")[1];
-      const keyArr = arr.split('&');
-      const newArr = []
-      keyArr.forEach(e => {
-          const predata = e.split('=')
-          if(predata[0] === sKey ) {
-              newArr.push(Number(predata[1]))
-          }
-      })
-      return newArr
-    }
-    console.log(getUrlParam('：http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe','key'))
+<script>
+//  function getUrlParam(sUrl, sKey) {
+//       const arr = sUrl.split("?")[1];
+//       const keyArr = arr.split('&');
+//       const newArr = []
+//       keyArr.forEach(e => {
+//           const predata = e.split('=')
+//           if(predata[0] === sKey ) {
+//               newArr.push(Number(predata[1]))
+//           }
+//       })
+//       return newArr
+//     }
+//     console.log(getUrlParam('http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe','key'))
+// -------------------------------------------------------------------------------
+    // 作用域
+    // var a = 10
+    // function b() {
+    //   console.log(a)
+    //   // var a = 9;
+    //   // console.log(a)
+    //   return function c(n) {
+    //     a++
+    //     console.log(++a, n);
+    //     return a
+    //   }
+    // }
+    // b();
+    // const d = b(1);
+    // d(4)
+    // console.log('h', a, d(6))
+
+    // a => 10, 
+    // 10
+    // 10 9 10 9 (12,4) (h, 12, 12, 9, 14,6)
+    // un 9 un 9
+    // -------------------------------------------------------------------------------
+    // var a = 10
+    // ~function(){
+    //   console.log(a) // 1
+    //   var a=5;
+    //   // function a(){}
+    //   console.log(a) //2 
+    //   // function b(){}
+    //   var b = 6
+    //   console.log(b) //3
+    //   var c = d = b 
+    // }()
+    // console.log(d) // 4
+    // console.log(c) // 5
+    // // ECStack 中 自执行函数未变量声明 提升
+    // // 自执行函数 中的变量不能被外部访问
+    // // 存在 var a 变量提升 1 处打印 undefined 2处打印 5 3处打印 6
+    // // var c = d = b 类似 var c = d l  d = b  c为私有作用域的提升，外部读取不到 4处打印 6
+    // // 5处打印 报错信息: Uncaught ReferenceError: c is not define
+    // // undefined
+    // // 5
+    // // 6
+    // // 6
+    // // 报错信息: Uncaught ReferenceError: c is not define
+    // -------------------------------------------------------------------------------
+    // 闭包问题，栈内存变量销毁问题
+    // var a = 9;
+    // function fn() {
+    //   a = 0;
+    //   return function(b) {
+    //     return b+ a++;
+    //   }
+    // }
+    // var f = fn(); //1步
+    // console.log(f(5))  //2步
+    // console.log(fn()(5)) //3步
+    // console.log(f(5)) //4步
+    // console.log(a) //5步
+    //  ECStack 中 进栈执行代码
+    // 全局作用域 声明 a  function fn 指向 16进制地址 AAAFFF111 声明 f 
+    // 在 AAAFFF111中（堆内存中） 无变量提升， 返回一个函数 匿名函数  16进制地址 AAAFFF222
+    // 在 AAAFFF222中（堆中） 无变量提升，
+//1步
+    // 全局下的a = 9 f为 fn的返回值
+    // 在 fn中 无形参赋值 和变量提升 a = 0, 则 全局下的 a = 0; a 等价于 window.a 不销毁， 被f赋值
+    // f => AAAFFF111中（堆内存中）
+// 2步
+  // 形参赋值： b = 5, 无变量提升 return 5 + a(全局window的a为0) retrun 的值为5  a++ 先计算在加减 全局的a = 1 
+  // 销毁， 计算执行完
+// 3步
+  // 无形参赋值 无变量提升 全局 a = 0;  return  AAAFFF222中（堆中）fn临时不销毁，当早AAAFFF222执行完毕后就销毁
+  // 早AAAFFF222中（堆中） 传入5  形参赋值 b = 5; 5+a++ => 5    a++ 先计算在加减 全局的a = 1
+// 4步
+  // 形参赋值： b = 5, 无变量提升 return 5 + a(全局window的a 为1) retrun 的值为6  a++ 先计算在加减 全局的a = 2 作用域计算完后销毁
+// 5步
+    // 全局的window.a = 2 
+// 打印 5 5 6 2
+    // -------------------------------------------------------------------------------
+
+
+function Foo(){
+     var i=0;
+     return function(){
+         document.write(i++);
+     }
+}
+var f1=Foo(),
+f2=Foo();
+f1();
+f1();
+f2();
+// 0 1 0  FOO里面的私有变量在两次里面不一样
   </script>
 </body>
 </html>
