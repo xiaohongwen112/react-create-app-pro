@@ -96,6 +96,33 @@ export default class Admin extends Component{
     )
   }
 
+  // componentWillMount() {
+  //   console.log('componentWillMount')
+  // }
+
+  // componentWillUnmount() {
+  //   console.log('componentWillUnmount')
+  // }
+  // static getDerivedStateFromProps() {
+  //   console.log('getDerivedStateFromProps')
+  // }
+  // componentWillUpdate() {
+  //   console.log('componentWillUpdate')
+  // }
+  // componentWillReceiveProps() {
+  //   console.log('componentWillReceiveProps')
+  // }
+  // componentDidUpdate() {
+  //   console.log('componentDidUpdate')
+  // }
+  // shouldComponentUpdate() {
+  //   console.log('shouldComponentUpdate')
+  // }
+  // componetWillReceiveProps() {
+  //   console.log('componetWillReceiveProps')
+  // }
+
+
   addFn() {
     store.dispatch(createIncrementAction(this.state.num))
     // store.dispatch({type: 'increment', data: 1})

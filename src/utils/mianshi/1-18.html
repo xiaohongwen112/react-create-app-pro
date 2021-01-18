@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+
+    // leetcode 721
+    var accountsMerge = function(accounts) {
+    const arr = []
+    accounts.forEach(e => {
+        const name = [...e].shift();
+        const arrTwo = [name];
+        const result = (arr[0]||arr).findIndex(el => e.some(ele => el == ele))
+        if(result >= 0) {
+            e.forEach(item => {
+               arr[result].push(item)
+            })
+        }
+        else arr.push(e);
+        // arr.push(arrTwo);
+    })
+    return arr
+};
+
+const a = accountsMerge([["John","johnsmith@mail.com","john_newyork@mail.com"],["John","johnsmith@mail.com","john00@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]])
+console.log(a)
+
+//     // Proxy 
+//     React 和 Vue 生命周期有什么区别？（答了vue，react不了解）
+
+// Vue如何监听数据的变化 √ (defineProperty，订阅者模式)
+
+// Vue里如何实现父子组件之间的通信 √
+
+// 了解过高阶组件吗（不了解）
+
+// 看过Vue的源码吗（目前主要在理解原理阶段）
+
+// 有没有使用工具构建过工程项目（vue cli+webpack）
+
+// webpack编译和构建原理（分析依赖，chunk）没有说loader
+
+// 平时使用什么工具转换es6（babel）
+
+// babel转码流程（配置.babelrc，解析语法数，改变块级变量名等等）
+// 纯js如何获取scrolltop值 √
+
+// 详述js闭包原理和意义 √
+
+// 深拷贝 浅拷贝是什么 √
+
+// arguments如何转数组 √
+
+// 移动端和pc端click事件为什么差了300毫秒 ×（因为iphone可以双击缩放）
+
+// flex布局用法 √
+
+// 如何实现移动端响应式布局 √
+
+// ES6的作用域 √
+
+// async await是什么 √
+
+// 块级作用域有哪些 √
+
+// 详述promise异步机制 √
+
+// 如何实现跨域访问 √
+
+// http通信如何设置缓存 √
+
+// 详述http状态码 √
+
+// 如何实现vue组件通信 √
+
+// 简述VueX的作用 √
+
+// 如何实现一个swiper √
+
+// hybrid是什么 √
+
+// hybrid js如何调用native接口 ×
+// 作为全栈为什么报前端 √
+
+// js用的哪个版本 √
+
+// es6新特性 √
+
+// promise有几种状态 √
+
+// promise如何满足多个异步进程的同步顺序 √
+
+// promise.race和promise.all的区别 ×
+
+// 怎么设计页面布局（开放题目）
+
+// 如何用flex让8个图标排成两行 ×（flex-wrap）
+
+// 垂直居中和水平居中 ×（说反了）
+
+// 你的页面是用一套界面响应不同宽度吗 √
+
+// 自己如何调前后端api √
+
+// vue中的fetch和axios是什么×
+
+// 跨域问题怎么解决 √
+
+// 跨域怎么做post ×（用iframe）
+
+// 详述git操作 √
+
+// vue.js 加载完成前隐藏花括号 ×（v-clock）
+
+// 开发主要用react，有兴趣转技术栈吗（有）
+// 列举几个css中可继承和不可继承的元素 √
+
+// 用css选中列表第二项 √
+
+// 伪类和伪元素的区别 √
+
+// h5字体如何自适应屏幕 √
+
+// rpx是什么 √
+
+// 追问：rem是什么 ？
+
+// 追问：vw是什么 √
+
+// 追问：vw和rem区别 ×（vw根据屏幕宽度，rem根据根元素确定font-size换算比例）
+
+// 什么情况下css会使用gpu加速 √
+
+// css filter是什么 ×（元素的可视效果例如：模糊与饱和度）
+
+// 网页如何去适配不同宽度 √
+
+// 详述meta标签的作用 √
+
+// position默认值和所有可能值 √
+
+// 什么是sass和less √
+
+// css动画最小间隔 √
+
+// shadow dom是什么 ×
+
+// svg和canvas的概念和区别 √
+
+// canvas图层怎么用 ×
+
+// dom渲染的性能损耗在哪里 √
+
+// 如何高效地从1000个div中删除10个div √
+
+// 如何监听img加载完成 √
+
+// 浏览器里除了js还能运行什么 × (webAssembly和actionscript)
+
+// promise有几种状态 × (fufilled, rejected,  pending)
+
+// 如何捕获promise错误 √
+
+// promise可以串联吗 ？答的不清晰
+
+// 详述vue都能解决什么问题 √
+
+// virtual dom如何进行diff操作 ×
+
+// vue中data为什么是函数不是对象 √
+
+// 为什么需要深拷贝 √
+
+// 简述指针是什么 √
+
+// node.js了解吗 × 不了解
+
+// 进程和线程的区别 √
+
+// 你自己开发的平台有多少用户和访问量 √
+
+// 如何监控未处理的异常 ?（只说了监听console error）
+
+// 5G是什么，为什么要用5G（开放题目）
+
+// 想象一下5G的应用场景（开放题目）
+
+// http和https的区别 √
+
+// 为什么https不会被截获 √
+
+// 量子计算机能否破解非对称加密 √（附加）
+
+// 量子计算机的原理 √（附加）
+
+// 浏览器如何缓存 ？(答的不好，设置http头部）
+
+// 详述http 1.0, 1.1, 2.0的区别 √
+
+// 详述TCP如何保证传输完整性 √
+
+// UDP和TCP有什么区别 √
+
+// 为什么使用UDP × 答的不好
+
+// WebSocket是基于什么协议连接 √
+
+// 冒泡算法和快排时间复杂度 √
+
+// 分布式系统用什么算法排序 ？半对
+
+// 广搜和深搜的应用 √
+
+// 广搜的数据结构 √
+
+// 链式求导是什么 ×
+
+// 矩阵的秩是什么 ？半对
+
+// 梯度和导数，偏导 √
+
+// 信息熵 √
+
+// 编译原理 ？半对
+
+// sql如何获取当前时间 √
+
+// char和varchar区别 √
+
+// drop, delete, truncate ？（半对，truncate可以持久化）
+
+// python用过吗 ？做过爬虫
+// 详述es5 es6中的作用域和闭包 √（es5全局+函数级，函数化闭包，es6块级）
+
+// 详述输入url到页面渲染完成 √（域名解析-TCP分包-IP寻路-握手-滑动窗口传输-持久化连接-挥手-解析-构建dom树与cssom-构建渲染树-回流-重绘-渲染）
+
+// 详述js异步机制Event Loop，MacroTask和MicroTask √（1个主线程+n个任务队列，浏览器异步处理后推入队列，循环处理，一个macroTask后跟全部microtask）
+
+// Promise.all的用法 √（在所有all中的promise结束后再执行）
+
+// 如何让Promise.all在抛出异常后依然有效 ×（正确答案：主动reject）
+
+// 什么是VueX √（状态量跨组件管理）
+
+// VueX 中action和mutation的区别 ×（正确答案：同步和异步）
+
+// 详述Vue的双向数据绑定原理 √（语法糖，dom监听+模型监听）
+
+// Vue的优势 √（virtual dom，数据绑定，视图与模型分离，隐去冗杂的dom操作）
+
+// 如何实现SEO优化 ？（只答了服务器端伪静态）
+
+// 详述回流和重绘优化 √（回流是对物理尺寸的变更，回流一定会重绘，重绘不一定回流，因此尽量减少回流次数，将元素移出dom树再变更）
+
+// 详述防抖和节流优化 √（状态锁/同步锁）
+
+// 简述ES6新特性 √（块级作用域,变量不提升,let, const,箭头函数,模板字符串,promise,async）
+
+// 简述箭头函数特性 ×
+
+// webpack打包如何优化 ×
+// 用js描述一棵树 √
+
+// 非递归遍历树 ×
+
+// 详述js new操作 √
+
+// 方法调用模式this指向 ×
+
+// 追问：函数调用模式this指向 √
+
+// 什么是js闭包 √
+
+// 如何跨域访问 √
+
+// vue的父子组件之间如何通信 ×
+
+// 用css写无限循环动画 ×
+
+// 如何响应式布局 √
+
+// 如何清除float √
+
+// 手写jsonp √
+
+// 为什么禁止跨域 ×
+
+// osi七层 × 漏说了
+
+// tcp三次握手 √ 四次挥手 ×
+
+// setTimeout为何能在单线程的js里异步执行 ×
+
+// 进程和线程的区别 ？
+
+// 写一个数字转中文的程序 √
+
+// js函数中如何绑定this到新对象上 √
+
+// bind和call有什么区别 ×
+
+// 手写快排 ×
+
+// 讲一下http状态码 √，其中303 304代表什么 ×
+
+// 死锁的原理和四要素 √
+
+// cookie和session的区别 √
+
+// 同源的定义 √
+// 介绍一下你的项目经历
+
+// 给我看看你上线的小程序√
+
+// 追问 这里瀑布流不平衡怎么回事√（用10px显示误差换取预加载带来的性能提升）
+
+// 追问 服务器用的什么√（阿里云腾讯云都用）
+
+// 追问 服务器运维了解吗√
+
+// 追问 服务器宕机以后怎么解锁mysql×（工程中没有遇到，不确定）
+
+// 追问 cpu使用率异常升高怎么解决√
+
+// 描述一下你的小程序开发流程√
+
+// 你的websocket是干什么的√
+
+// 追问 你的websocket是怎么通信的√
+
+// 离线怎么获取消息√
+
+// Vue Router原理√
+
+// 你的发展规划（前端工程-前端架构-系统架构）
+
+// 你的意向部门（C端）
+
+// 问 有可能去哪个部门（不确定，双向选择）
+// 介绍一下你的项目经历
+
+// 你的php包管理用什么√ composer
+
+// composer的autoloader怎么实现的？
+
+// php fast-cgi是什么？并发管理
+
+// php setcookie是否会改变$COOKIE数组√不会
+
+// 你的MYSQL Procedure是干什么的√函数交互
+
+// 跨域请求怎么设置header字段√
+
+// Vue Router原理√
+
+// VueX具体应用在哪些场景内√
+
+// 用过哪些Ajax组件√ Axios
+
+// Axios怎么实现拦截√
+
+// js二维数组反向合并√
+  </script>
+</body>
+</html>
