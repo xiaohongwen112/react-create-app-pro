@@ -13,12 +13,14 @@
     var accountsMerge = function(accounts) {
     const arr = []
     accounts.forEach(e => {
-        const name = [...e].shift();
+        const name = e.shift();
         const arrTwo = [name];
         const result = (arr[0]||arr).findIndex(el => e.some(ele => el == ele))
         if(result >= 0) {
+            e.shift()
             e.forEach(item => {
-               arr[result].push(item)
+              const newArr = [arrTwo, item]
+               arr[result].push(newArr)
             })
         }
         else arr.push(e);
@@ -27,7 +29,12 @@
     return arr
 };
 
-const a = accountsMerge([["John","johnsmith@mail.com","john_newyork@mail.com"],["John","johnsmith@mail.com","john00@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]])
+const a = accountsMerge([
+  ["John","johnsmith@mail.com","john_newyork@mail.com"],
+  ["John","johnsmith@mail.com","john00@mail.com"],
+  ["Mary","mary@mail.com"],
+  ["John","johnnybravo@mail.com"]
+])
 console.log(a)
 
 //     // Proxy 
