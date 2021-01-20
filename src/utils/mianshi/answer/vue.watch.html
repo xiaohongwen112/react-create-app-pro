@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    const a = {a:1, b:{c:2,d:3}} // 监听该对象
+
+    function xiao() {
+      console.log('值修改')
+    }
+    // 在vue2.0中
+    class Watch {
+      constructor(obj, key, fn) {
+        this.obj = obj;
+        this.key = key;
+        this.fn = fn
+        this._loop(this.obj, this.key);
+      }
+
+      _loop(obj, key) {
+        if(typeof obj == 'object' && typeof obj !== null ) {
+          const arr = Object.keys(obj)
+          if(arr.length > 1) {
+            arr.forEach(el => {
+              this._loop(obj[el], el)
+              if(typeof obj[el] == 'object' && typeof obj[el] !== null )  this.defineFn(obj[el],this.key,this.fn)
+              // if(el === this.key) this.defineFn(obj[el],this.key,this.fn)
+            })
+          } else {
+            this.defineFn(obj,key,this.fn)
+          }
+        
+        }
+      }
+      // writable:true 可修改
+      // enumerable:true 可枚举
+      // configurable:true 可操作/删除
+      defineFn(obj, key, fn) {
+        let value = obj[key]
+        Object.defineProperty(obj, key, {
+          set() {
+            return value
+          },
+          get(newVal) {
+            value = newVal
+            console.log(key + '发生修改');
+            fn()
+          }
+        })
+      }
+    }
+    console.log(a)
+    const aa = new Watch(a, 'b', xiao)
+    a.b.c = 22;
+    console.log(a)
+  </script>
+</body>
+</html>

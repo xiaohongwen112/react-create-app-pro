@@ -9,35 +9,37 @@
   
   <script>
 
-    // leetcode 721
-    var accountsMerge = function(accounts) {
-      const arr = []
-      accounts.forEach((e, index) => {
-          const old = [...e] 
-          const name = e.shift();
-          const result = (arr[0]||arr).findIndex(el => old.some(ele => el == ele))
-          if(result >= 0) {
-            old.forEach(item => {
-                const newArr = [name, item]
-                //  arr[result].push(newArr)
-                arr[result] = Array.from(
-                  new Set([...newArr, ...arr[result]])
-                )
-              })
-          }
-          else arr.push(old);
-          // arr.push(arrTwo);
-      })
-      return arr
-    };
+    // leetcode 18
+    var fourSum = function(nums, target) {
+    nums.sort((a,b) => b - a)
+    const arr = []; // 输出值
+    const numsLen = nums.length;
 
-const a = accountsMerge([
-  ["John","johnsmith@mail.com","john_newyork@mail.com"],
-  ["John","johnsmith@mail.com","john00@mail.com"],
-  ["Mary","mary@mail.com"],
-  ["wenwen","johnnybravo@mail.com"],
-  ["John","johnnybravo@mail.com"]
-])
+    for(let i = 0; i < numsLen ; i++){
+        for(let j = numsLen - 1; j > 0 ; j--){
+            let left = i + 0,
+                right = j - 1;
+            while (left < right) {
+                if (nums[left] + nums[right] < target - nums[i] - nums[j]) left++;     // 此两数之和太小，左指针右移
+                else if (nums[left] + nums[right] > target - nums[i] - nums[j]) right--;    // 此两数之和太大，右指针左移
+                else{
+                    // 找到一组解，左右指针内缩，继续寻找
+                        arr.push([nums[i], nums[left], nums[j], nums[right]])
+                    left++; right--;
+                    // 去重
+                    while (left < right && nums[left] == nums[left-1])   left++;
+                    while (left < right && nums[right] == nums[right+1])   right--;
+                }
+            }
+            // while() {
+            //     nums[i] + 
+            // }
+        }
+    }
+    return arr
+};
+
+const a = fourSum([1,2,3,4,4,0,3,2], 10)
 console.log(a)
 
 //     // Proxy 

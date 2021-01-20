@@ -9,35 +9,24 @@
   
   <script>
 
-    // leetcode 721
-    var accountsMerge = function(accounts) {
-      const arr = []
-      accounts.forEach((e, index) => {
-          const old = [...e] 
-          const name = e.shift();
-          const result = (arr[0]||arr).findIndex(el => old.some(ele => el == ele))
-          if(result >= 0) {
-            old.forEach(item => {
-                const newArr = [name, item]
-                //  arr[result].push(newArr)
-                arr[result] = Array.from(
-                  new Set([...newArr, ...arr[result]])
-                )
-              })
-          }
-          else arr.push(old);
-          // arr.push(arrTwo);
-      })
-      return arr
-    };
+    // leetcode 628
+  var maximumProduct = function(nums) {
+    const stack = [];
+    const numsLen = nums.length;
+    for(let i = 0; i < numsLen; i++){
+      if(stack.length < 5) {
+        const maxL = Math.max(...nums)
+        const minL = Math.min(...nums)
+        stack.unshift(maxL)
+        nums.splice(nums.findIndex(item => item === maxL), 1)
+        stack.push(minL)
+        nums.splice(nums.findIndex(item => item === minL), 1)
+      }
+    }
+    return Math.max((stack[2] * stack[3] * stack[4]), (stack[2] * stack[1] * stack[0]))
+  };
 
-const a = accountsMerge([
-  ["John","johnsmith@mail.com","john_newyork@mail.com"],
-  ["John","johnsmith@mail.com","john00@mail.com"],
-  ["Mary","mary@mail.com"],
-  ["wenwen","johnnybravo@mail.com"],
-  ["John","johnnybravo@mail.com"]
-])
+const a = maximumProduct([1,2,3,4])
 console.log(a)
 
 //     // Proxy 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>prim 普利姆算法</title>
+</head>
+<body>
+
+  <script>
+    //http://data.biancheng.net/view/40.html
+
+
+    //new Array(n).fill  new Array(5) => [empty * 5] 有长度，无值  取值 为 undefined   fill为将全部包括undefined的替换为 fill（1） 里面的值
+
+
+
+    var minCostConnectPoints = function(points) {
+      let n = points.length
+      let coll1 = new Set()   //已选点集A
+      let coll2 = new Set()   //未选点集B
+      let res = 0
+      let dist = new Array(n).fill(0).map(e=>new Array(n).fill(Infinity)) // 各点到各点距离
+      for(let i=0;i<n;i++){
+          coll2.add(i)
+          let [x1,y1] = points[i]
+          for(let j=0;j<n;j++){
+              if(i==j)continue;
+              let [x2,y2] = points[j]
+              dist[i][j] = Math.abs(x1-x2) + Math.abs(y1-y2)
+          }
+      }
+      coll1.add(0)    // 从第0个点开始加入已选点集A
+      coll2.delete(0) // 从未选点集B中删除点0
+      while(coll2.size>0){
+          let distance = Infinity // 存最短距离
+          let point = null        //存距离已选点集A最近的点
+          for(let i of coll1){    //依次查找距离已选点集A最近的点
+              for(let j of coll2){
+                  let tmp = dist[i][j]
+                  if(tmp<distance){
+                      distance = tmp
+                      point = j
+                  }
+              }
+          }
+          res += distance
+          coll1.add(point)    // 点point加入已选点集A
+          coll2.delete(point) // 从未选点集B中删除点point
+      }
+      return res
+  };
+  // var minCostConnectPoints = function(points) {
+    
+  // }
+  let data = [[0,0],[2,2],[3,10],[5,2],[7,0]]
+  console.log(minCostConnectPoints(data))
+  </script>
+  
+</body>
+</html>
