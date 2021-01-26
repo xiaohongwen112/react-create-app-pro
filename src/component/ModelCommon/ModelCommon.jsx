@@ -47,8 +47,12 @@ class MainShow extends Component {
     });
   };
 
+  componentWillMount () {
+    debugger
+  }
+
   render() {
-    const { visible } = this.props
+    const { visible, allData } = this.props
     return(
     <div>
         <Modal
@@ -64,9 +68,9 @@ class MainShow extends Component {
       >
         <Form {...layout} ref={this.formRef} name="control-ref" onFinish={() => this.onFinish}>
           <Form.Item name="name" label="机房名称" rules={[{ required: true }]}>
-            <Input placeholder={this.state.name} onBlur={this.blurFN}/>
+            <Input placeholder={this.state.name} value={allData.name}  defaultValue={allData.name} onBlur={this.blurFN}/>
           </Form.Item>
-          <Form.Item name="area" label="机房所在区域" rules={[{ required: true }]}>
+          <Form.Item name="area" value={allData.area}  label="机房所在区域" rules={[{ required: true }]}>
             <Select
               placeholder="输入机房所在区域"
               onChange={this.onGenderChange}
