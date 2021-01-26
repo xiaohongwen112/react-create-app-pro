@@ -9,7 +9,8 @@ class MainShow extends Component {
   }
 
   editFn() {
-
+    const { name, area } = this.props
+    this.props.editChild({name: name, area: area})
   }
   render() {
     const styles = {
@@ -48,7 +49,7 @@ class MainShow extends Component {
         <Menu.Item key="1"  onClick={() => this.deleteFn} style={styles.preBnt}>
           删除
         </Menu.Item>
-        <Menu.Item key="2" onClick={() => this.editFn} style={styles.preBnt}>
+        <Menu.Item key="2" onClick={() => this.editFn()} style={styles.preBnt}>
           修改
         </Menu.Item>
       </Menu>
@@ -62,7 +63,7 @@ class MainShow extends Component {
           <span style={{float:"right", marginRight: '10px'}}>{area}</span>
         </div>
         <div style={{width:"100%"}}>
-          <Button value="large"  style={{float:"left", width: '105px', height: '28px'}} onClick={ ()=> this.editRoom()}>
+          <Button value="large"  style={{float:"left", width: '105px', height: '28px'}}>
             <Link to={{pathname: 'edit'}}> 编辑机房</Link>
           </Button>
           <Button  style={{float:"left", marginLeft: '10px',width: '85px', textAlign:'center', height: '28px'}}>查看监控</Button>
@@ -76,10 +77,10 @@ class MainShow extends Component {
       </div>
     )
   }
-  editRoom() {
-    console.log(this)
-    history.push("/edit")
-  }
+  // editRoom() {
+  //   console.log(this)
+  //   history.push("/edit")
+  // }
 }
 
 {/* <style lang='less'>

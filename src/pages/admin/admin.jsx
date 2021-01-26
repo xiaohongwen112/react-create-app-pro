@@ -31,6 +31,7 @@ export default class Admin extends Component{
       {name: '成都', area: "成都"},
       {name: '成都', area: "成都"},
     ],
+    preData: {},
     visible: false,
     num: 1,
     allNum: 0,
@@ -83,7 +84,7 @@ export default class Admin extends Component{
                 <div style={{margin: '54px 0px 0 30px'}}>
                   {
                     this.state.list.map((element, index) => {
-                      return  <MainShow key={index} name={element.name} area={element.area}></MainShow>
+                      return  <MainShow key={index} name={element.name} editChild={(data) => this.editChildFn(data)} area={element.area}></MainShow>
                     })
                   }
                 </div>
@@ -91,7 +92,7 @@ export default class Admin extends Component{
             </Content>
           </Layout>
         </Layout>
-        <ModelCommon visible={this.state.visible} onClicked={this.createRoom.bind(this)}/>     
+        <ModelCommon visible={this.state.visible} hasData = {(data) => this.addDataFn(data)} allData = {this.state.preData} onClicked={this.createRoom.bind(this)}/>     
       </div>
     )
   }
@@ -140,7 +141,19 @@ export default class Admin extends Component{
       allNum: data
     })
   }
-
+  editChildFn = (data) => {
+    this.setState({
+      preData: data
+    })
+    this.createRoom(true)
+  }
+  addDataFn = (data)=> {
+    const newObj = {...data}
+    const {list: olddata} = this.state
+    this.setState({
+      list: [newObj, ...olddata]
+    })
+  }
   createRoom(data) {
     this.setState({
       visible: data

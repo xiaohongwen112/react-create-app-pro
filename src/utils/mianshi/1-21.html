@@ -9,31 +9,21 @@
   
   <script>
 
-    // leetcode 18
-    var cpFourSum = function(nums, target) {
-    nums.sort((a,b) => b - a)
-    const arr = []; // 输出值
-    const numsLen = nums.length;
-    for(let i = 0; i < numsLen ; i++){
-        for(let j = numsLen - 1; j > 0 ; j--){
-            let leftPointer = i + 1,
-                rightPointer = j - 1;
-            while (leftPointer < rightPointer) {
-                if (nums[leftPointer] + nums[rightPointer] + nums[i] + nums[j] < target) leftPointer++; 
-                else if (nums[leftPointer] + nums[rightPointer] + nums[i] + nums[j] > target) rightPointer--;
-                else{
-                  arr.push([nums[i], nums[leftPointer], nums[j], nums[rightPointer]])
-                  leftPointer++; rightPointer--;
-                  while (leftPointer < rightPointer && nums[leftPointer] == nums[leftPointer-1]) leftPointer++;
-                  while (leftPointer < rightPointer && nums[rightPointer] == nums[rightPointer+1]) rightPointer--;
-                }
-            }
-        }
+    // leetcode 50
+    var myPow = function(x, n) {
+    let result // 返回值
+    if (n == 0 ) {
+        result = 1
+    } else if(n > 0) {
+        // 取导
+        result = myPow(x*x, n - 1)
+    } else {
+        result = myPow(1/x*1/x, n + 1)
     }
-    return arr
+    return result
 };
 
-const a = fourSum([1,2,3,4,4,0,3,2], 10)
+const a = myPow(8.95371, -100)
 console.log(a)
 
 //     // Proxy 
