@@ -47,8 +47,11 @@ class MainShow extends Component {
     });
   };
 
-  componentWillMount () {
-    debugger
+  componentDidMount () {
+    const { allData } = this.props
+    this.setState({
+      perdata: allData
+    })
   }
 
   render() {
@@ -68,7 +71,7 @@ class MainShow extends Component {
       >
         <Form {...layout} ref={this.formRef} name="control-ref" onFinish={() => this.onFinish}>
           <Form.Item name="name" label="机房名称" rules={[{ required: true }]}>
-            <Input placeholder={this.state.name} value={allData.name}  defaultValue={allData.name} onBlur={this.blurFN}/>
+            <Input placeholder={this.state.name} value={allData.name} onChange={(e) => this.changeFn(e)} onBlur={this.blurFN}/>
           </Form.Item>
           <Form.Item name="area" value={allData.area}  label="机房所在区域" rules={[{ required: true }]}>
             <Select
@@ -104,6 +107,11 @@ class MainShow extends Component {
       </Modal>
     </div>
     )
+  }
+  changeFn = (e)=> {
+    const newPerdata = this.state.perdata
+    newPerdata.name = e.target.value
+    this.props.changeData(newPerdata)
   }
   blurFN = (e)=> {
     const newPerdata = this.state.perdata

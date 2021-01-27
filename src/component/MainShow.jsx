@@ -12,6 +12,10 @@ class MainShow extends Component {
     const { name, area } = this.props
     this.props.editChild({name: name, area: area})
   }
+  deleteFn() {
+    const { name, area } = this.props
+    this.props.delete({name: name, area: area})
+  }
   render() {
     const styles = {
       roomList: {
