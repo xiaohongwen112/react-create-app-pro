@@ -11,6 +11,7 @@ import {
 import './admin.less'
 import MainShow from '../../component/MainShow'
 import ModelCommon from '../../component/ModelCommon/ModelCommon'
+import * as api from '../../axios/api'
 const { Search } = Input;
 const { Sider, Content } = Layout;
 const suffix = (
@@ -102,9 +103,10 @@ export default class Admin extends Component{
     )
   }
 
-  // componentWillMount() {
-  //   console.log('componentWillMount')
-  // }
+  async componentWillMount() {
+    console.log('componentWillMount')
+    const data = await api.getAll();
+  }
 
   // componentWillUnmount() {
   //   console.log('componentWillUnmount')
@@ -132,7 +134,7 @@ export default class Admin extends Component{
     const {list: olddata} = this.state
     olddata.splice(olddata.findIndex(e => e.id),1);
     this.setState({
-      list: [newObj, ...olddata]
+      list: [...olddata]
     })
   }
   addFn() {

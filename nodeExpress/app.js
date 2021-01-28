@@ -6,11 +6,11 @@ const app = new Koa()
 
 const koaStatic = require('koa-static');
 app.use(koaStatic(__dirname, '/static'));
-const cors = require('koa-cors') 
+
 const mongoDB = require('mongodb')
 const mongoDBClient = mongoDB.MongoClient;
 const WEN = 'mongodb://localhost:3333/wen';
-app.use(cors())
+
 // // 2.x.x
 // mongoDBClient.connect(WEN, { useUnifiedTopology: true }, (err, db) => {
 //   if (err) {
@@ -66,12 +66,11 @@ const addFN = (clinet) => {
   })
 }
 
-router.get('/room/getAll', async (ctx) => {
+
+router.get('/wen', async (ctx) => {
   console.log(ctx)
-  ctx.body = '1'
 })
 
-// router.post('room/getAll', async () )
 app.use(router.routes());
 
 
