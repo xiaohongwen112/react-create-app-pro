@@ -166,12 +166,13 @@ export default class Admin extends Component{
       visible: true
     })
   }
-  addDataFn = (data)=> {
+  addDataFn = async (data)=> {
     const newObj = {...data}
     const {list: olddata} = this.state
     this.setState({
       list: [newObj, ...olddata]
     })
+    await api.saveData(newObj);
   }
   createRoom(data) {
     this.setState({

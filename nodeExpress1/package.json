@@ -16,6 +16,7 @@
     "mongodb": "^3.6.3"
   },
   "dependencies": {
+    "koa-bodyparser": "^4.3.0",
     "koa-cors": "^0.0.16"
   }
 }
