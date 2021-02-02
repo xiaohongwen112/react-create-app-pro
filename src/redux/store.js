@@ -12,5 +12,4 @@ import reducer from './reducer'
 //   state,
 //   module,
 // })
-
 export default createStore(reducer)

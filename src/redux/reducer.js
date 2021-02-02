@@ -20,3 +20,4 @@ const reducer = (preState=initState, action) => { // 参数上=赋值，在参�
 }
 
 export default reducer
+

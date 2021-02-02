@@ -68,7 +68,7 @@ class MainShow extends Component {
         </div>
         <div style={{width:"100%"}}>
           <Button value="large"  style={{float:"left", width: '105px', height: '28px'}}>
-            <Link to={{pathname: 'edit'}}> 编辑机房</Link>
+            <Link to={{pathname: 'login'}}> 编辑机房</Link>
           </Button>
           <Button  style={{float:"left", marginLeft: '10px',width: '85px', textAlign:'center', height: '28px'}}>查看监控</Button>
           {/* <Button  style={{float:"left", marginLeft: '10px',width: '55px', height: '28px'}}>···</Button> */}
