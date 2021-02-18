@@ -15,7 +15,7 @@ const tailLayout = {
 class MainShow extends Component {
   state = {
     name: '输入机房名称',
-    perdata:  {name: '', area: ""},
+    perdata:  {name: '111', area: "111"},
   }
   formRef = React.createRef();
   deleteFn() {
@@ -47,18 +47,86 @@ class MainShow extends Component {
     });
   };
 
-  componentDidMount () {
-    const { allData } = this.props
-    this.setState({
-      perdata: allData
-    })
+
+  // 挂载
+  // constructor() {
+  //   console.log(1)
+  // }
+
+  static getDerivedStateFromProps() {
+    console.log(2)
   }
 
+  // render() {
+  // }
+
+  componentDidMount() {
+    console.log(4)
+  }
+
+  // 更新
+  static getDerivedStateFromProps(props){
+    console.log(11)
+    // this.props.form.setFieldsValue({
+    //   SaleContractNo: next.ProductRecipientApply.SaleContractNo,
+    //   IsLetterAuthorization: next.ProductRecipientApply.IsLetterAuthorization,
+    //   AppEndTime: next.ProductRecipientApply.AppEndTime,
+    //   InnerOrderNo: next.ProductRecipientApply.InnerOrderNo,
+    // })
+    return {
+      perdata: props.allData
+    };
+  }
+
+  shouldComponentUpdate() {
+    console.log(12)
+    return true
+  }
+
+  // render() {
+
+  // }
+
+  getSnapshotBeforeUpdate() {
+    console.log(14)
+  }
+
+  componentDidUpdate() {
+    setTimeout(()=>{
+			this.formRef.current.setFieldsValue({
+        showName: this.props.allData.name
+      })
+		},0)
+    console.log(15)
+  }
+
+  componentWillUnmount() {
+    
+    console.log(1323235)
+  }
+
+  // componentDidMount () {
+  //   debugger;
+  //   const { allData } = this.props
+  //   this.setState({
+  //     perdata: allData
+  //   })
+  // }
+  
+  // componentWillReceiveProps(nextProps) {
+  //   const { allData } = nextProps
+  //   this.setState({
+  //     perdata: allData
+  //   })
+  // }
+
   render() {
+    console.log(3)
     const { visible, allData } = this.props
     return(
     <div>
         <Modal
+        forceRender={true}
         title="新增机房"
         centered
         visible={visible}
@@ -69,11 +137,13 @@ class MainShow extends Component {
         width={520}
         height={500}
       >
+            {/* <input placeholder={this.state.name} value={this.state.perdata.name} onChange={(e) => this.changeFn(e)} onBlur={this.blurFN}/> */}
+
         <Form {...layout} ref={this.formRef} name="control-ref" onFinish={() => this.onFinish}>
           <Form.Item name="name" label="机房名称" rules={[{ required: true }]}>
-            <Input placeholder={this.state.name} value={allData.name} onChange={(e) => this.changeFn(e)} onBlur={this.blurFN}/>
+            <Input  placeholder={this.state.name} initialValues ="showName" onChange={(e) => this.changeFn(e)} onBlur={this.blurFN}/>
           </Form.Item>
-          <Form.Item name="area" value={allData.area}  label="机房所在区域" rules={[{ required: true }]}>
+          <Form.Item name="area" value={this.state.perdata.area}  label="机房所在区域" rules={[{ required: true }]}>
             <Select
               placeholder="输入机房所在区域"
               onChange={this.onGenderChange}

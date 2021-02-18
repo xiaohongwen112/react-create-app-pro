@@ -1,5 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
+import { resolveOnChange } from '_antd@4.10.0@antd/lib/input/Input';
 
 const baseConfig = {
   // baseURL: process.env.NODE_ENV = 'production' ? '/' : '/api',
@@ -47,4 +48,4 @@ const post = (url, param = {}, ifFormData = false) => {
 export  {
   get,
   post
-} 
+}

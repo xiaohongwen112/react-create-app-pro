@@ -22,7 +22,6 @@ const suffix = (
     }}
   />
 );
-const onSearch = value => console.log(value);
 export default class Admin extends Component{
   state = {
     list: [
@@ -73,7 +72,7 @@ export default class Admin extends Component{
               <div className="site-layout-background" style={{ padding: 24, textAlign: 'center' }}>
                 <Search 
                   placeholder="输入机房名称关键字" 
-                  onSearch={onSearch} 
+                  onSearch={(e) => this.onSearch(e)} 
                   enterButton
                   className="search-input"
                 />
@@ -180,7 +179,7 @@ export default class Admin extends Component{
       preData: {name: '', area: ''}
     })
   }
-  onSearch() {
+  onSearch(e) {
     debugger;
   }
 }

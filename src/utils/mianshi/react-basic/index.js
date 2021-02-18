@@ -49,5 +49,9 @@
 // 按需引入 antd
 
 
+// 存在三种模式：
+legacy // reactDow.render 创建
+blocking // ReactDOM.createBlockingRoot
+concurrent // ReactDOM.createRoot
 
-
+batchedUpdate // 批处理 触发this.setState . 多次 合并成一次

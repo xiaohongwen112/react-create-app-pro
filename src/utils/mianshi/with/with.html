@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    function foo(obj) {
+      with (obj) {
+        a = 2;
+      }
+    }
+
+    // var o1 = {
+    //   a: 3
+    // };
+
+    // var o2 = {
+    //   b: 3
+    // }
+
+    // foo(o1);
+    // console.log(o1.a);	//2
+
+    foo({});
+    // console.log(o2.a);	//underfined
+    console.log(a);	
+  </script>
+</body>
+</html>

@@ -72,7 +72,8 @@
     //   console.log(a) // 1
     //   var a=5;
     //   // function a(){}
-    //   console.log(a) //2 
+    //   var a = function(){}
+    //   // console.log(a) //2 
     //   // function b(){}
     //   var b = 6
     //   console.log(b) //3
@@ -92,18 +93,18 @@
     // // 报错信息: Uncaught ReferenceError: c is not define
     // -------------------------------------------------------------------------------
     // 闭包问题，栈内存变量销毁问题
-    // var a = 9;
-    // function fn() {
-    //   a = 0;
-    //   return function(b) {
-    //     return b+ a++;
-    //   }
-    // }
-    // var f = fn(); //1步
-    // console.log(f(5))  //2步
-    // console.log(fn()(5)) //3步
-    // console.log(f(5)) //4步
-    // console.log(a) //5步
+    var a = 9;
+    function fn() {
+      a = 0;
+      return function(b) {
+        return b+ a++;
+      }
+    }
+    var f = fn(); //1步
+    console.log(f(5))  //2步
+    console.log(fn()(5)) //3步
+    console.log(f(5)) //4步
+    console.log(a) //5步
     //  ECStack 中 进栈执行代码
     // 全局作用域 声明 a  function fn 指向 16进制地址 AAAFFF111 声明 f 
     // 在 AAAFFF111中（堆内存中） 无变量提升， 返回一个函数 匿名函数  16进制地址 AAAFFF222
@@ -116,8 +117,8 @@
   // 形参赋值： b = 5, 无变量提升 return 5 + a(全局window的a为0) retrun 的值为5  a++ 先计算在加减 全局的a = 1 
   // 销毁， 计算执行完
 // 3步
-  // 无形参赋值 无变量提升 全局 a = 0;  return  AAAFFF222中（堆中）fn临时不销毁，当早AAAFFF222执行完毕后就销毁
-  // 早AAAFFF222中（堆中） 传入5  形参赋值 b = 5; 5+a++ => 5    a++ 先计算在加减 全局的a = 1
+  // 无形参赋值 无变量提升 全局 a = 0;  return  AAAFFF222中（堆中）fn临时不销毁，当在AAAFFF222执行完毕后就销毁
+  // 在AAAFFF222中（堆中） 传入5  形参赋值 b = 5; 5+a++ => 5    a++ 先计算在加减 全局的a = 1
 // 4步
   // 形参赋值： b = 5, 无变量提升 return 5 + a(全局window的a 为1) retrun 的值为6  a++ 先计算在加减 全局的a = 2 作用域计算完后销毁
 // 5步
@@ -126,18 +127,21 @@
     // -------------------------------------------------------------------------------
 
 
-function Foo(){
-     var i=0;
-     return function(){
-         document.write(i++);
-     }
-}
-var f1=Foo(),
-f2=Foo();
-f1();
-f1();
-f2();
+// function Foo(){
+//      var i=0;
+//      return function(){
+//          document.write(i++);
+//      }
+// }
+// var f1=Foo(),
+// f2=Foo();
+// f1();
+// f1();
+// f2();
 // 0 1 0  FOO里面的私有变量在两次里面不一样
+
+
+
   </script>
 </body>
 </html>
