@@ -30,31 +30,31 @@
 // // console.log(objs.b)
 
 
-// let validator = {
-//   get: function(target, propKey) {
-//     if (propKey in target) {
-//       return target[propKey];
-//     } else {
-//       // throw new ReferenceError("Prop name \"" + propKey + "\" does not exist.");
-//     }
-//   },
-//   set: function(obj, prop, value) {
-//     console.log(111)
-//     if (prop === 'age') {
-//       if (!Number.isInteger(value)) {
-//         throw new TypeError('The age is not an integer');
-//       }
-//       if (value > 200) {
-//         throw new RangeError('The age seems invalid');
-//       }
-//     }
+let validator = {
+  get: function(target, propKey) {
+    if (propKey in target) {
+      return target[propKey];
+    } else {
+      // throw new ReferenceError("Prop name \"" + propKey + "\" does not exist.");
+    }
+  },
+  set: function(obj, prop, value) {
+    console.log(111)
+    if (prop === 'age') {
+      if (!Number.isInteger(value)) {
+        throw new TypeError('The age is not an integer');
+      }
+      if (value > 200) {
+        throw new RangeError('The age seems invalid');
+      }
+    }
 
-//     // 对于满足条件的 age 属性以及其他属性，直接保存
-//     obj[prop] = value;
-//   }
-// };
+    // 对于满足条件的 age 属性以及其他属性，直接保存
+    obj[prop] = value;
+  }
+};
 
-// let person = new Proxy({}, validator);
+let person = new Proxy({}, validator);
 
 // person.age = 100;
 // person.a++

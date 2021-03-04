@@ -7,6 +7,8 @@
 
 // render
 
+
+
 // componentDidMount
 
 // componentWillReceiveProps // qiyong
@@ -50,8 +52,10 @@
 
 
 // 存在三种模式：
-legacy // reactDow.render 创建
-blocking // ReactDOM.createBlockingRoot
-concurrent // ReactDOM.createRoot
+legacy // reactDOM.render 创建 reactDOM.render
+blocking // ReactDOM.createBlockingRoot ReactDOM.createBlokingRoot
+concurrent // ReactDOM.createRoot 
 
 batchedUpdate // 批处理 触发this.setState . 多次 合并成一次
+
+fiber //
